@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "express": "^4.21.0",
+    "react-fast-marquee": "^1.6.5",
+    "resend": "^4.0.0"
+  }
+}
