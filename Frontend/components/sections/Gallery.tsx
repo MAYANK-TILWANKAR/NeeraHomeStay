@@ -7,27 +7,50 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import "swiper/css/parallax";
-import img from "/gallery/1.jpg"
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-
   const openImage = (src: string) => {
     setSelectedImage(src);
   };
-  
+
   const closeImage = () => {
     setSelectedImage(null);
   };
-  
+
+  const galleryImages = [
+    { src: "/gallery/2.jpg", alt: "Bathroom", title: "Bathroom" },
+    { src: "/gallery/3.jpg", alt: "Badroom", title: "Bathroom" },
+    { src: "/gallery/4.jpg", alt: "Bedroom", title: "Bedroom" },
+    { src: "/gallery/6.jpg", alt: "Bedroom", title: "Bedroom" },
+    { src: "/gallery/7.jpg", alt: "Bedroom", title: "Bedroom" },
+    { src: "/gallery/8.jpg", alt: "Television", title: "Television" },
+    { src: "/gallery/9.jpg", alt: "Air Conditioner", title: "Air Conditioner" },
+    { src: "/gallery/11.jpg", alt: "Reading Light", title: "Reading Light" },
+    { src: "/gallery/12.jpg", alt: "Game Zone", title: "Game Zone" },
+    {
+      src: "/gallery/13.jpg",
+      alt: "Meditation Spot",
+      title: "Meditation Spot",
+    },
+    { src: "/gallery/22.jpg", alt: "Balcony", title: "Balcony" },
+    { src: "/gallery/23.jpg", alt: "Beauty", title: "Beauty" },
+    { src: "/gallery/24.jpg", alt: "Exterior", title: "Exterior" },
+    { src: "/gallery/27.jpg", alt: "Interior", title: "Interior" },
+    {
+      src: "/gallery/28.jpg",
+      alt: "Family Friendly Environment",
+      title: "Family Friendly Environment",
+    },
+  ];
 
   return (
-    <section className="bg-white   sm:py-[90px] py-20 ">
+    <section className="bg-white sm:py-[90px] py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center pb-10">
-          <h2 className="sm:text-4xl text-3xl font-bold text-black mb-2   ">
+          <h2 className="sm:text-4xl text-3xl font-bold text-black mb-2">
             Our Gallery
           </h2>
           <p className="sm:text-lg text-base text-gray-600">
@@ -60,218 +83,21 @@ const Gallery = () => {
             },
           }}
           className="swiper-container">
-          {/* Swiper Slide 1 */}
-          <SwiperSlide>
-            <div className="swiper-slide-content">
-              <img
-                className="w-full h-96 object-cover cursor-pointer"
-                src="/gallery/2.jpg"
-                alt="Bathroom"
-                onClick={() => openImage("/gallery/2.jpg")}
-              />
-              <div className="text-center mt-4 font-semibold text-gray-700">
-                Bathroom
+          {galleryImages.map((image, index) => (
+            <SwiperSlide key={index}>
+              <div className="swiper-slide-content">
+                <img
+                  className="w-full h-96 object-cover cursor-pointer"
+                  src={image.src}
+                  alt={image.alt}
+                  onClick={() => openImage(image.src)}
+                />
+                <div className="text-center mt-4 font-semibold text-gray-700">
+                  {image.title}
+                </div>
               </div>
-            </div>
-          </SwiperSlide>
-
-          {/* Swiper Slide 2 */}
-          <SwiperSlide>
-            <div className="swiper-slide-content">
-              <img
-                className="w-full h-96 object-cover cursor-pointer"
-                src="/gallery/3.jpg"
-                alt="Bedroom"
-                onClick={() => openImage("/gallery/3.jpg")}
-              />
-              <div className="text-center mt-4 font-semibold text-gray-700">
-                Bathroom
-              </div>
-            </div>
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <div className="swiper-slide-content">
-              <img
-                className="w-full h-96 object-cover cursor-pointer"
-                src="/gallery/4.jpg"
-                alt="Balcony"
-                onClick={() => openImage("/gallery/4.jpg")}
-              />
-              <div className="text-center mt-4 font-semibold text-gray-700">
-                Bedroom
-              </div>
-            </div>
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <div className="swiper-slide-content">
-              <img
-                className="w-full h-96 object-cover cursor-pointer"
-                src="/gallery/6.jpg"
-                alt="Bedroom"
-                onClick={() => openImage("/gallery/6.jpg")}
-              />
-              <div className="text-center mt-4 font-semibold text-gray-700">
-                Bedroom
-              </div>
-            </div>
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <div className="swiper-slide-content">
-              <img
-                className="w-full h-96 object-cover cursor-pointer"
-                src="/gallery/7.jpg"
-                alt="Balcony"
-                onClick={() => openImage("/gallery/7.jpg")}
-              />
-              <div className="text-center mt-4 font-semibold text-gray-700">
-                Bedroom
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="swiper-slide-content">
-              <img
-                className="w-full h-96 object-cover cursor-pointer"
-                src="/gallery/8.jpg"
-                alt="Toilet"
-                onClick={() => openImage("/gallery/8.jpg")}
-              />
-
-              <div className="text-center mt-4 font-semibold text-gray-700">
-                Television
-              </div>
-            </div>
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <div className="swiper-slide-content">
-              <img
-                className="w-full h-96 object-cover cursor-pointer"
-                src="/gallery/9.jpg"
-                alt="Toilet"
-                onClick={() => openImage("/gallery/9.jpg")}
-              />
-
-              <div className="text-center mt-4 font-semibold text-gray-700">
-                Air Conditioner 
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="swiper-slide-content">
-              <img
-                className="w-full h-96 object-cover cursor-pointer"
-                src="/gallery/11.jpg"
-                alt="Toilet"
-                onClick={() => openImage("/gallery/11.jpg")}
-              />
-
-              <div className="text-center mt-4 font-semibold text-gray-700">
-                Reading Light
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="swiper-slide-content">
-              <img
-                className="w-full h-96 object-cover cursor-pointer"
-                src="/gallery/12.jpg"
-                alt="Toilet"
-                onClick={() => openImage("/gallery/12.jpg")}
-              />
-
-              <div className="text-center mt-4 font-semibold text-gray-700">
-                Game Zone
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="swiper-slide-content">
-              <img
-                className="w-full h-96 object-cover cursor-pointer"
-                src="/gallery/13.jpg"
-                alt="Toilet"
-                onClick={() => openImage("/gallery/13.jpg")}
-              />
-
-              <div className="text-center mt-4 font-semibold text-gray-700">
-                Meditation Spot
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="swiper-slide-content">
-              <img
-                className="w-full h-96 object-cover cursor-pointer"
-                src="/gallery/22.jpg"
-                alt="Toilet"
-                onClick={() => openImage("/gallery/22.jpg")}
-              />
-
-              <div className="text-center mt-4 font-semibold text-gray-700">
-                Balcony
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="swiper-slide-content">
-              <img
-                className="w-full h-96 object-cover cursor-pointer"
-                src="/gallery/23.jpg"
-                alt="Toilet"
-                onClick={() => openImage("/gallery/23.jpg")}
-              />
-
-              <div className="text-center mt-4 font-semibold text-gray-700">
-                Beauty
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="swiper-slide-content">
-              <img
-                className="w-full h-96 object-cover cursor-pointer"
-                src="/gallery/24.jpg"
-                alt="Toilet"
-                onClick={() => openImage("/gallery/24.jpg")}
-              />
-
-              <div className="text-center mt-4 font-semibold text-gray-700">
-                Exterior
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="swiper-slide-content">
-              <img
-                className="w-full h-96 object-cover cursor-pointer"
-                src="/gallery/27.jpg"
-                alt="Toilet"
-                onClick={() => openImage("/gallery/27.jpg")}
-              />
-
-              <div className="text-center mt-4 font-semibold text-gray-700">
-                Interior
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="swiper-slide-content">
-              <img
-                className="w-full h-96 object-cover cursor-pointer"
-                src="/gallery/28.jpg"
-                alt="Toilet"
-                onClick={() => openImage("/gallery/28.jpg")}
-              />
-
-              <div className="text-center mt-4 font-semibold text-gray-700">
-                Family Friendly Environment 
-              </div>
-            </div>
-          </SwiperSlide>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
 

@@ -1,7 +1,8 @@
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
+import "swiper/css/autoplay";
 import { useEffect, useState } from "react";
 
 const ServiceSlider = () => {
@@ -26,14 +27,19 @@ const ServiceSlider = () => {
   return (
     <section className="py-12 sm:py-28 px-4 sm:px-16">
       <div className="w-full mx-auto">
-
         <Swiper
-          slidesPerView={1.2}
+          modules={[Autoplay, Pagination]}
+          slidesPerView={slidesPerView}
           spaceBetween={30}
           loop={true}
           autoplay={{
-            delay: 1500,
+            delay: 3000,
             disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+            el: ".swiper-pagination",
+            type: "bullets",
           }}
           className="swiper-container mb-10">
           {[
@@ -47,7 +53,11 @@ const ServiceSlider = () => {
               alt: "Yoga and Meditation Spot",
               title: "Yoga and Meditation Spot",
             },
-            { src: "/gallery/11.jpg", alt: "Books and Reading Material", title: "Books and Reading Material" },
+            {
+              src: "/gallery/11.jpg",
+              alt: "Books and Reading Material",
+              title: "Books and Reading Material",
+            },
             {
               src: "/gallery/12.jpg",
               alt: "Game Zone",
@@ -74,6 +84,7 @@ const ServiceSlider = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+        <div className="swiper-pagination"></div>
       </div>
     </section>
   );
