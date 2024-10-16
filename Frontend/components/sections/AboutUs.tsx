@@ -70,7 +70,7 @@ const AboutUs: React.FC = () => {
             <p className="text-gray-700 text-lg leading-relaxed hidden md:block">
               Our aim is to create a sanctuary where you feel more like a guest
               in a loved one&apos;s home, surrounded by care and tranquility.
-              Our goal is to make you feel like a special guest in a loved one's
+              Our goal is to make you feel like a special guest in a loved ones
               home, with plenty of care and peace.
             </p>
           </div>
