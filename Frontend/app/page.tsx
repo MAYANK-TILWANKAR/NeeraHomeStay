@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import "./styles.css";
 import ReviewSection from "../components/sections/reviews";
 import ContactUs from "../components/sections/contactUs";
@@ -6,9 +7,7 @@ import NearbyAtraction from "../components/sections/nearby-atraction";
 import Navbar from "../components/ui/navbar";
 import HomePage from "../components/sections/Home-Page";
 import AboutUs from "../components/sections/AboutUs";
-import Host from "../components/sections/Host";
 import Gallery from "../components/sections/Gallery";
-import Services from "../components/sections/Services";
 import { Analytics } from "@vercel/analytics/react";
 import NewServices from "../components/sections/newServices";
 import Image from "next/image";
@@ -16,49 +15,70 @@ import whatsapp from "../components/images/icons/whatsapp.png";
 import Insta from "../components/images/icons/instagram.png";
 import call from "../components/images/icons/call.png";
 import Link from "next/link";
+import Lenis from "@studio-freight/lenis";
 
 const Home: React.FC = () => {
+  useEffect(() => {
+    const lenis = new Lenis();
+
+    lenis.on("scroll", (e: any) => {
+      console.log(e);
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
   const phoneNumber = "+918989551263";
   return (
     <div className="allOfTheAbove">
-      <div className="iconsall z-20">
+      <div className="iconsall z-20 py-60">
         <Link href="https://wa.me/+918989551263">
           <Image
             src={whatsapp}
-            alt="-"
+            alt="WhatsApp"
             className="w-[60%] iconsallimg"
-            height="20"
-            width="30"
+            height={20}
+            width={30}
             style={{ aspectRatio: "300/300", objectFit: "cover" }}
           />
         </Link>
         <Image
           src={Insta}
-          alt="-"
+          alt="Instagram"
           className="w-[60%] iconsallimg"
-          height="20"
-          width="30"
+          height={20}
+          width={30}
           style={{ aspectRatio: "300/300", objectFit: "cover" }}
         />
         <Link href={`tel:${phoneNumber}`}>
           <Image
             src={call}
-            alt="-"
+            alt="Call"
             className="w-[60%] iconsallimg"
-            height="20"
-            width="30"
+            height={20}
+            width={30}
             style={{ aspectRatio: "300/300", objectFit: "cover" }}
           />
         </Link>
       </div>
 
       <Navbar />
-      <div className=" overflow-y-auto ">
+      <div className="overflow-y-hidden">
         <HomePage />
         <AboutUs />
-        {/* <Host /> */}
-        <Gallery />
-        {/* <Services /> */}
+        <div id="gallery">
+          <Gallery />
+        </div>
         <NewServices />
         <NearbyAtraction />
         <ReviewSection />

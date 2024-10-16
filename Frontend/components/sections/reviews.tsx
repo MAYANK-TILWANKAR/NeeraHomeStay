@@ -24,6 +24,13 @@ const ReviewSection: React.FC = () => {
     initialSlide: 0,
     responsive: [
       {
+        breakpoint: 1280,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
         breakpoint: 1024,
         settings: {
           slidesToShow: 2,
@@ -31,7 +38,7 @@ const ReviewSection: React.FC = () => {
         },
       },
       {
-        breakpoint: 780,
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -63,26 +70,28 @@ const ReviewSection: React.FC = () => {
     },
     {
       name: "Vikram Singh",
-      text: "Great location near the lake. The peaceful atmosphere was exactly what we needed.",
+      text: "Serene lakeside location. The ambiance provided the perfect retreat we sought.",
       imageSrc: "/images/person5.jpg",
     },
   ];
 
   return (
-    <section id="review" className="bg-gray-100 py-16">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <p className="text-xl font-semibold text-gray-600 mb-2">
+    <section
+      id="review"
+      className="bg-gray-100 py-12 sm:py-16 md:py-20 lg:py-24">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-8 sm:mb-12">
+          <p className="text-lg sm:text-xl font-semibold text-gray-600 mb-2">
             Your Stay Host
           </p>
-          <h2 className="text-4xl font-bold">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
             What Our <span className="text-[#0d726c]">Clients Say</span>
           </h2>
         </div>
         <div className="max-w-6xl mx-auto">
           <Slider {...settings}>
             {reviews.map((review, index) => (
-              <div key={index} className="px-2">
+              <div key={index} className="px-2 sm:px-4">
                 <ReviewCard
                   name={review.name}
                   text={review.text}

@@ -36,11 +36,6 @@ const ServiceSlider = () => {
             delay: 3000,
             disableOnInteraction: false,
           }}
-          pagination={{
-            clickable: true,
-            el: ".swiper-pagination",
-            type: "bullets",
-          }}
           className="swiper-container mb-10">
           {[
             {

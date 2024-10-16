@@ -2,106 +2,104 @@
 import Image from "next/image";
 import placeholder1 from "../images/download.jpeg";
 import ac from "../images/ac.png";
-import clean from "../images/clean.png"
-import parking from "../images/parking.png"
-import wifi from "../images/wifi.png"
-import games from "../images/games.png"
-import family from "../images/family.png"
+import clean from "../images/clean.png";
+import parking from "../images/parking.png";
+import wifi from "../images/wifi.png";
+import games from "../images/games.png";
+import family from "../images/family.png";
 
 const Services: React.FC = () => {
   const items = [
-    { text: 'Air Conditioner Rooms', active: false, icon: ac },
-    { text: 'Well-Hygiened Washrooms', active: true, icon:clean },
-    { text: '2 and 4-Wheeler Parking Spaces', active: false, icon:parking },
-    { text: 'Wi-Fi Connectivity', active: false, icon:wifi },
-    { text: 'Play and Fun Games', active: false, icon:games },
-    { text: 'Family Environment', active: false, icon:family }
+    { text: "Air Conditioned Rooms", active: false, icon: ac },
+    { text: "Well-Maintained Washrooms", active: true, icon: clean },
+    {
+      text: "Ample Parking for 2 and 4-Wheelers",
+      active: false,
+      icon: parking,
+    },
+    { text: "High-Speed Wi-Fi", active: false, icon: wifi },
+    { text: "Indoor Games and Entertainment", active: false, icon: games },
+    { text: "Family-Friendly Environment", active: false, icon: family },
   ];
-    return (
-        <section id="services" className="section3">
-          <div className="topsection3">
-              <div className="lefttopsection3">
-              <h1 className="section3Heading md:sectionHeadings text-center text-white md:ml-5 ml-7 sectionHeadings w-[30.5rem] font-bold mb-4"><span className='text-yellow-500'>Explore Our </span>HomeStay Services</h1>
-              <p className='pp text-justify text-white w-[40vw] md:ml-5 ml-7 text-lg sm:text-md'>We provide a range of exceptional services and amenities designed to make your stay comfortable and memorable.</p>
-              </div>
-              <a href="#contactUs">
-              <button className='exploreMoreBtn3 bg-yellow-500 text-black'>
-                  Book Now 
-              </button>
-              </a>
+
+  return (
+    <section id="services" className="bg-gray-100 py-16">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-12">
+          <div className="md:w-1/2 mb-8 md:mb-0">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              <span className="text-black">Explore Our </span>
+              HomeStay Services
+            </h2>
+            <p className="text-gray-600 text-lg">
+              We provide a range of exceptional services and amenities designed
+              to make your stay comfortable and memorable.
+            </p>
           </div>
-          <div className="bottomsection3">
-              <div className="section3card">
-                <h1 className='text-2xl sm:text-3xl font-bold mb-4'>One-Way Free Drop to Mahakaleshwar Temple</h1>
-                <p className='text-sm'>Enjoy a complimentary ride to the temple for a hassle-free visit. </p>
-                <Image
-              src={placeholder1}
-              alt="Professional Teams"
-              className="section1img rounded-2xl"
-              height="200"
-              width="300"
-              style={{ aspectRatio: "300/300", objectFit: "cover" }}
-            />
-              </div>
+          <a href="#contactUs" className="w-full md:w-auto">
+            <button className="bg-yellow-500 text-black px-8 py-3 rounded-full text-lg font-semibold hover:bg-yellow-600 transition duration-300 w-full md:w-auto">
+              Book Now
+            </button>
+          </a>
+        </div>
 
-              <div className="section3card">
-                <h1 className='text-3xl font-bold mb-4'>Yoga and Meditation Spot</h1>
-                <p className='text-sm'>Relax and rejuvenate in our dedicated space for yoga and meditation.</p>
-                <Image
-              src={placeholder1}
-              alt="Professional Teams"
-              className="section1img rounded-2xl"
-              height="200"
-              width="300"
-              style={{ aspectRatio: "300/300", objectFit: "cover" }}
-            />
-              </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {[
+            {
+              title: "Free Temple Drop",
+              description:
+                "Complimentary one-way drop to Mahakaleshwar Temple.",
+            },
+            {
+              title: "Yoga & Meditation",
+              description: "Dedicated space for yoga and meditation practices.",
+            },
+            {
+              title: "Reading Corner",
+              description: "Curated collection of books and reading materials.",
+            },
+            {
+              title: "Custom Travel Plans",
+              description:
+                "Personalized itineraries for your Ujjain adventure.",
+            },
+          ].map((service, index) => (
+            <div key={index} className="bg-white p-6 rounded-lg shadow-md ">
+              <h3 className="text-xl font-bold mb-2">{service.title}</h3>
+              <p className="text-gray-600 mb-4">{service.description}</p>
+              <Image
+                src={placeholder1}
+                alt={service.title}
+                className="rounded-lg w-full h-48 object-cover"
+                width={300}
+                height={200}
+              />
+            </div>
+          ))}
+        </div>
 
-              <div className="section3card">
-                <h1 className='text-3xl font-bold mb-4'>Books and Reading Materials</h1>
-                <p className='text-sm'>Browse through a collection of books and reading materials to unwind during your stay.</p>
+        <div className="mt-16">
+          <h3 className="text-2xl font-bold mb-8 text-center">
+            Additional Amenities
+          </h3>
+          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {items.map((item, index) => (
+              <li key={index} className="flex items-center">
                 <Image
-              src={placeholder1}
-              alt="Professional Teams"
-              className="section1img rounded-2xl"
-              height="200"
-              width="300"
-              style={{ aspectRatio: "300/300", objectFit: "cover" }}
-            />
-              </div>
-              <div className="section3card">
-                <h1 className='text-3xl font-bold mb-4'>Personal Customized Travel Plans or Itinerary</h1>
-                <p className='text-sm'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem vero</p>
-                <Image
-              src={placeholder1}
-              alt="Professional Teams"
-              className="section1img rounded-2xl"
-              height="200"
-              width="300"
-              style={{ aspectRatio: "300/300", objectFit: "cover" }}
-            />
-              </div>
-          </div>
-          
-          <div>
-      <ul className="bullet-point">
-        {items.map((item, index) => (
-          <li key={index} className={""}>
-            <p className="text-black flex flex-row mb-5"><span className="textsizeservices1 bold">
-            <Image
-              src={item.icon}
-              alt="-"
-              className="w-8 mr-6 mt-2"
-              height="20"
-              width="30"
-              style={{ aspectRatio: "300/300", objectFit: "cover" }}
-            />
-              </span> {item.text}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-        </section>
-    )}
+                  src={item.icon}
+                  alt=""
+                  className="w-8 h-8 mr-4"
+                  width={32}
+                  height={32}
+                />
+                <span className="text-lg">{item.text}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+};
 
-    export default Services;
+export default Services;

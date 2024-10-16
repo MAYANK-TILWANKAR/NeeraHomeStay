@@ -17,7 +17,7 @@ export default function ContactUs() {
   return (
     <section
       id="contactUs"
-      className="section8 flex flex-col items-center justify-center h-screen pb-20  p-4 bg-gray-100">
+      className="section8 flex flex-col items-center justify-center h-min-screen p-4 bg-gray-100">
       <div className="flex flex-col mt-20 justify-center gap-12 w-full max-w-full p-9 space-y-8 md:flex-row md:space-y-0 md:space-x-8 section8">
         <div className="flex-1 max-w-xl">
           <h3 className="mt-2 text-4xl font-bold">

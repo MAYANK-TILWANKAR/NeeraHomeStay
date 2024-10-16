@@ -1,13 +1,33 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import "./navbarStyles.css";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   const navLinks = [
     { href: "#aboutUs", text: "About us" },
@@ -19,32 +39,101 @@ const Navbar: React.FC = () => {
   ];
 
   return (
-    <nav className="navbar">
-      <div className="container mx-auto flex justify-between items-center">
-        <div className="flex items-center space-x-4">
-          <LogoIcon className="h-8 w-8" />
-          <span className="text-xl font-bold">Neera</span>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 bg-gray-800 text-white transition-transform duration-300 ${
+        isVisible ? "translate-y-0" : "-translate-y-full"
+      }`}>
+      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+        <div className="flex items-center space-x-2">
+          <LogoIcon className="h-6 w-6 md:h-8 md:w-8" />
+          <span className="text-lg md:text-xl font-bold">Neera</span>
+        </div>
+        <div className="hidden md:flex space-x-4">
+          {navLinks.map(({ href, text }) => (
+            <Link key={href} href={href} className="hover:text-gray-300">
+              {text}
+            </Link>
+          ))}
         </div>
 
-        <div className="menu-icons" onClick={toggleMenu}>
-          <i className={isMenuOpen ? "fas fa-times" : "fas fa-bars"}></i>
+        <div className="md:hidden">
+          <button
+            onClick={toggleMenu}
+            className="text-white focus:outline-none">
+            <motion.svg
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              animate={isMenuOpen ? "open" : "closed"}
+              variants={{
+                open: { rotate: 180 },
+                closed: { rotate: 0 },
+              }}
+              transition={{ duration: 0.3 }}>
+              {isMenuOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </motion.svg>
+          </button>
         </div>
 
-        <ul className={`navbar-menu ${isMenuOpen ? "active" : ""}`}>
-          <div className="flex space-x-4">
-            {navLinks.map(({ href, text }) => (
-              <Link
-                key={href}
-                href={href}
-                className="text-white"
-                prefetch={false}>
-                {text}
-              </Link>
-            ))}
-          </div>
-        </ul>
-        <a href="#contactUs">
-          <Button variant="default" className="bg-yellow-500 text-white">
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.ul
+              className="md:flex md:space-x-4 block absolute md:relative top-full left-0 right-0 bg-gray-800 md:bg-transparent p-4 md:p-0 mt-2 md:mt-0"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}>
+              {navLinks.map(({ href, text }) => (
+                <motion.li
+                  key={href}
+                  className="py-2 md:py-0"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: 0.1 }}>
+                  <Link
+                    href={href}
+                    className="block md:inline-block text-white hover:text-yellow-500 transition-colors duration-300"
+                    prefetch={false}
+                    onClick={() => setIsMenuOpen(false)}>
+                    {text}
+                  </Link>
+                </motion.li>
+              ))}
+              <motion.li
+                className="py-2 md:py-0"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: 0.2 }}>
+                <a href="#contactUs" className="block md:hidden">
+                  <Button
+                    variant="default"
+                    className="w-full bg-yellow-500 text-white hover:bg-yellow-600 transition-colors duration-300">
+                    Get A Quote
+                  </Button>
+                </a>
+              </motion.li>
+            </motion.ul>
+          )}
+        </AnimatePresence>
+        <a href="#contactUs" className="hidden md:block">
+          <Button
+            variant="default"
+            className="bg-yellow-500 text-white hover:bg-yellow-600 transition-colors duration-300">
             Get A Quote
           </Button>
         </a>
