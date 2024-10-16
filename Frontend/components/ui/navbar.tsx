@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
 
   const navLinks = [
     { href: "#aboutUs", text: "About us" },
-    { href: "#host", text: "Your Host" },
+    // { href: "#host", text: "Your Host" },
     { href: "#gallery", text: "Gallery" },
     { href: "#services", text: "Services" },
     { href: "#nearbyAttraction", text: "Attractions" },
@@ -133,8 +133,11 @@ const Navbar: React.FC = () => {
         <a href="#contactUs" className="hidden md:block">
           <Button
             variant="default"
-            className="bg-yellow-500 text-white hover:bg-yellow-600 transition-colors duration-300">
-            Get A Quote
+            className="bg-yellow-500 text-white hover:bg-yellow-600 transition-colors duration-300 relative overflow-hidden group">
+            <span className="relative z-10 font-semibold">Get A Quote</span>
+            <span className="absolute inset-0 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+            <span className="absolute inset-0 bg-yellow-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300 animate-pulse"></span>
+            <span className="absolute -inset-px bg-gradient-to-r from-yellow-400 to-yellow-600 opacity-0 group-hover:opacity-50 blur transition-opacity duration-300"></span>
           </Button>
         </a>
       </div>

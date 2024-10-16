@@ -31,7 +31,7 @@ const HomePage: React.FC = () => {
         </div>
 
         {/* Subheading */}
-        <p className="section1subheading text-center md:text-left mb-6 text-base sm:text-lg md:text-xl">
+        <p className="section1subheading text-center md:text-left mb-6 text-base sm:text-lg md:text-xl sm:px-14 px-0 justify-center">
           Situated in front of a serene lake in Ujjain, Neera blends traditional
           Indian hospitality with modern comfort, offering a peaceful and
           memorable stay for your family and friends.
