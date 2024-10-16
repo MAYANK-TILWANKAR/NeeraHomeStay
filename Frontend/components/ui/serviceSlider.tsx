@@ -44,7 +44,7 @@ const ServiceSlider = () => {
           className="swiper-container mb-10">
           {[
             {
-              src: "/gallery/Mahakal temple.jpg",
+              src: "/gallery/card-1.jpg",
               alt: "Free One way Mahakaleshwar Temple Drop",
               title: "Free One way Mahakaleshwar Temple Drop",
             },

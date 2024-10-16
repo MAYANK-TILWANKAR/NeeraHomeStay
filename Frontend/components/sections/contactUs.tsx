@@ -1,21 +1,33 @@
-"use client"
+"use client";
 import React from "react";
-import { Input } from "../ui/input"
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "../ui/select"
-import { Textarea } from "../ui/textarea"
-import { Button } from "../ui/button"
-import Link from "next/link"
-
+import { Input } from "../ui/input";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "../ui/select";
+import { Textarea } from "../ui/textarea";
+import { Button } from "../ui/button";
+import Link from "next/link";
 
 export default function ContactUs() {
-  const phoneNumber = '+91 92443 82639';
+  const phoneNumber = "+91 92443 82639";
   return (
-    <section id="contactUs" className="section8 flex flex-col items-center justify-center min-h-screen p-4 bg-gray-100">
+    <section
+      id="contactUs"
+      className="section8 flex flex-col items-center justify-center h-screen pb-20  p-4 bg-gray-100">
       <div className="flex flex-col mt-20 justify-center gap-12 w-full max-w-full p-9 space-y-8 md:flex-row md:space-y-0 md:space-x-8 section8">
         <div className="flex-1 max-w-xl">
-          <h3 className="mt-2 text-4xl font-bold"><span className="text-blue-500">Neera</span> Stories
+          <h3 className="mt-2 text-4xl font-bold">
+            <span className="text-blue-500">Neera</span> Stories
           </h3>
-          <h2 className="text-md mt-5 mb-5">For any inquiries, bookings or information, reach out to us via phone, email or our online form. We’re here to help you plan a spiritually enriching stay at Neera. </h2>
+          <h2 className="text-md mt-5 mb-5">
+            For any inquiries, bookings or information, reach out to us via
+            phone, email or our online form. We’re here to help you plan a
+            spiritually enriching stay at Neera.{" "}
+          </h2>
           <form className="mt-6 space-y-4">
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <div>
@@ -28,7 +40,11 @@ export default function ContactUs() {
                 <label htmlFor="email" className="block text-sm font-medium">
                   Email *
                 </label>
-                <Input id="email" placeholder="example@gmail.com" type="email" />
+                <Input
+                  id="email"
+                  placeholder="example@gmail.com"
+                  type="email"
+                />
               </div>
               <div>
                 <label htmlFor="phone" className="block text-sm font-medium">
@@ -55,7 +71,9 @@ export default function ContactUs() {
                 </Select>
               </div>
               <div>
-                <label htmlFor="date-from" className="block text-sm font-medium">
+                <label
+                  htmlFor="date-from"
+                  className="block text-sm font-medium">
                   From *
                 </label>
                 <Input id="date-from" type="date" />
@@ -71,9 +89,15 @@ export default function ContactUs() {
               <label htmlFor="message" className="block text-sm font-medium">
                 Additional Requirements *
               </label>
-              <Textarea id="message" placeholder="Enter here..." className="min-h-[100px]" />
+              <Textarea
+                id="message"
+                placeholder="Enter here..."
+                className="min-h-[100px]"
+              />
             </div>
-            <Button className="w-full mt-4 bg-yellow-400">Book a Service</Button>
+            <Button className="w-full mt-4 bg-yellow-400">
+              Book a Service
+            </Button>
           </form>
         </div>
         <div className="section8right max-w-sm flex-1 flex flex-col justify-between px-6 py-14 space-y-4 text-white bg-teal-700 rounded-lg">
@@ -85,8 +109,8 @@ export default function ContactUs() {
           <div className="flex flex-col gap-1">
             <h4 className="text-lg font-bold">Contact</h4>
             <Link href={`tel:${phoneNumber}`}>
-        <p>{phoneNumber}</p>
-      </Link>
+              <p>{phoneNumber}</p>
+            </Link>
             <p>Email: adisharma151ays@gmail.com</p>
           </div>
           <div className="flex flex-col gap-1">
@@ -107,7 +131,7 @@ export default function ContactUs() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 interface FacebookIconProps {
@@ -126,13 +150,11 @@ const FacebookIcon: React.FC<FacebookIconProps> = (props) => {
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+      strokeLinejoin="round">
       <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
     </svg>
-  )
-}
-
+  );
+};
 
 interface InstagramIconProps {
   [key: string]: any;
@@ -150,15 +172,13 @@ const InstagramIcon: React.FC<InstagramIconProps> = (props) => {
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+      strokeLinejoin="round">
       <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
       <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
       <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
     </svg>
-  )
-}
-
+  );
+};
 
 interface PinIconProps {
   [key: string]: any;
@@ -176,14 +196,12 @@ const PinIcon: React.FC<PinIconProps> = (props) => {
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+      strokeLinejoin="round">
       <line x1="12" x2="12" y1="17" y2="22" />
       <path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z" />
     </svg>
-  )
-}
-
+  );
+};
 
 interface TwitterIconProps {
   [key: string]: any;
@@ -201,13 +219,11 @@ const TwitterIcon: React.FC<TwitterIconProps> = (props) => {
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+      strokeLinejoin="round">
       <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
     </svg>
-  )
-}
-
+  );
+};
 
 interface YoutubeIconProps {
   [key: string]: any;
@@ -225,10 +241,9 @@ const YoutubeIcon: React.FC<YoutubeIconProps> = (props) => {
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+      strokeLinejoin="round">
       <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
       <path d="m10 15 5-3-5-3z" />
     </svg>
-  )
-}
+  );
+};

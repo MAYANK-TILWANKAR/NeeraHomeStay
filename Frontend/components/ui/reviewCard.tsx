@@ -1,30 +1,35 @@
-import React from "react"
+import React from "react";
 import "../../app/styles.css";
 import Image from "next/image";
+import { FaQuoteLeft } from "react-icons/fa";
 import Person1 from "../images/person1.jpg";
-
-const ReviewCard: React.FC = () => {
-    return(
-        <>
-            <div className="section7card">
-            <div className="reviewCardTop">
-            <div className="reviewImg">
-            <Image
-              src={Person1}
-              alt="Professional Teams"
-              className="rounded-full border-2 border-white"
-              height="200"
-              width="110"
-              style={{ aspectRatio: "300/300", objectFit: "cover" }}
-            />
-            </div>
-            </div>
-            <div className="reviewCardBottom">
-                <p className="text-lg">The Stay was one of the Coziest one&apos;s, The best  part was the Cleanliness <span className="font-[600] text-md text-[#0a7367]">-Aditya Sharma</span></p>
-            </div>
-          </div>
-        </>
-    )
+interface ReviewCardProps {
+  name: string;
+  text: string;
+  imageSrc: string;
 }
+
+const ReviewCard: React.FC<ReviewCardProps> = ({ name, text, imageSrc }) => {
+  return (
+    <div className="bg-white rounded-lg shadow-md p-6 relative">
+      <FaQuoteLeft className="text-3xl text-gray-300 absolute top-4 left-4" />
+      <div className="mb-4 pt-6">
+        <p className="text-gray-600 italic">{text}</p>
+      </div>
+      <div className="flex items-center">
+        <div className="w-12 h-12 mr-4 relative">
+          <Image
+            src={Person1}
+            alt={`${name}'s profile`}
+            layout="fill"
+            objectFit="cover"
+            className="rounded-full"
+          />
+        </div>
+        <p className="font-semibold text-gray-800">{name}</p>
+      </div>
+    </div>
+  );
+};
 
 export default ReviewCard;

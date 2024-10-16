@@ -1,71 +1,100 @@
-"use client"
+"use client";
 import "../../app/styles.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import React from "react"
+import React from "react";
 import Slider from "react-slick";
-import ReviewCard from "../../components/ui/reviewCard";
+import ReviewCard from "../ui/reviewCard";
+
+interface Review {
+  name: string;
+  text: string;
+  imageSrc: string;
+}
 
 const ReviewSection: React.FC = () => {
-    var settings = {
-        autoplay: true,
-        autoplaySpeed: 2000,
-        dots: true,
-        infinite: true,
-        speed: 2000,
-        slidesToShow: 2,
-        slidesToScroll: 2,
-        initialSlide: 0,
-        responsive: [
-          {
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 2,
-              infinite: true,
-              dots: true
-            }
-          },
-          {
-            breakpoint: 780,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1,
-              initialSlide: 1
-            }
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          }
-        ]
-      };
-    return(
-        <>
-            <section id="review" className="section7">
-            <div className="section7headings">
-            <p className='text-xl font-semibold mt-14'>-- Your Stay Host</p>
-            {/* <h1 className="text-5xl font-bold mb-4 mt-10">What Our<span className='text-[#0d726c]'>Clients Say</span></h1> */}
-            <h3 className="text-centersmall mt-2 text-3xl font-bold mb-9">
+  const settings = {
+    autoplay: true,
+    autoplaySpeed: 3000,
+    dots: true,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 780,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
+  const reviews: Review[] = [
+    {
+      name: "Aditya Sharma",
+      text: "The stay was one of the coziest ones. The best part was the cleanliness.",
+      imageSrc: "/images/person1.jpg",
+    },
+    {
+      name: "Priya Patel",
+      text: "Excellent service and beautiful surroundings. Highly recommended!",
+      imageSrc: "/images/person2.jpg",
+    },
+    {
+      name: "Rahul Gupta",
+      text: "A perfect blend of traditional charm and modern amenities. Will visit again!",
+      imageSrc: "/images/person3.jpg",
+    },
+    {
+      name: "Sneha Reddy",
+      text: "The staff was incredibly helpful and the rooms were spacious and comfortable.",
+      imageSrc: "/images/person4.jpg",
+    },
+    {
+      name: "Vikram Singh",
+      text: "Great location near the lake. The peaceful atmosphere was exactly what we needed.",
+      imageSrc: "/images/person5.jpg",
+    },
+  ];
+
+  return (
+    <section id="review" className="bg-gray-100 py-16">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <p className="text-xl font-semibold text-gray-600 mb-2">
+            Your Stay Host
+          </p>
+          <h2 className="text-4xl font-bold">
             What Our <span className="text-[#0d726c]">Clients Say</span>
-          </h3>
-            </div>
-            <div className="slider-container">
-      <Slider {...settings}>
-      <ReviewCard />
-      <ReviewCard />
-      <ReviewCard />
-      <ReviewCard />
-      <ReviewCard />
-      <ReviewCard />
-      </Slider>
-    </div>
-            </section>
-        </>
-    )
-}
+          </h2>
+        </div>
+        <div className="max-w-6xl mx-auto">
+          <Slider {...settings}>
+            {reviews.map((review, index) => (
+              <div key={index} className="px-2">
+                <ReviewCard
+                  name={review.name}
+                  text={review.text}
+                  imageSrc={review.imageSrc}
+                />
+              </div>
+            ))}
+          </Slider>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 export default ReviewSection;
