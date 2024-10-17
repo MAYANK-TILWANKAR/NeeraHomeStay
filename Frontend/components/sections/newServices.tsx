@@ -1,19 +1,19 @@
 "use client";
 import Image from "next/image";
 import ServiceSlider from "../ui/serviceSlider";
-import ac from "../images/icons/air-conditioner.png";
-import bathroom from "../images/icons/male-and-female.png";
-import family from "../images/icons/parents.png";
-import parking from "../images/icons/garage.png";
-import power from "../images/icons/generator.png";
-import tea from "../images/icons/coffee-cup.png";
-import toiletries from "../images/icons/toiletries.png";
-import wifi from "../images/icons/travel.png";
+import ac from "../../public/images/icons/air-conditioner.png";
+import bathroom from "../../public/images/icons/male-and-female.png";
+import family from "../../public/images/icons/parents.png";
+import parking from "../../public/images/icons/garage.png";
+import power from "../../public/images/icons/generator.png";
+import tea from "../../public/images/icons/coffee-cup.png";
+import toiletries from "../../public/images/icons/toiletries.png";
+import wifi from "../../public/images/icons/travel.png";
 
 const NewServices: React.FC = () => {
   const services = [
-    { id: "1", text: "Air Conditioner Rooms", icon: ac },
-    { id: "2", text: "Well-Hygiened Washrooms", icon: bathroom },
+    { id: "1", text: "Air Conditioned Rooms", icon: ac },
+    { id: "2", text: "Well-Maintained Washrooms", icon: bathroom },
     { id: "3", text: "Parking Space", icon: parking },
     { id: "4", text: "Wi-Fi Connectivity", icon: wifi },
     { id: "5", text: "Toiletries", icon: toiletries },
@@ -23,7 +23,7 @@ const NewServices: React.FC = () => {
   ];
 
   return (
-    <section id="services" className="bg-white py-16">
+    <section id="services" className=" py-16">
       <div className="container mx-auto px-4">
         <header className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4">

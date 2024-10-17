@@ -3,7 +3,7 @@ import Marquee from "react-fast-marquee";
 
 const AboutUs: React.FC = () => {
   return (
-    <section id="aboutUs" className="pt-20 sm:pt-0 bg-gray-50 px-5">
+    <section id="aboutUs" className="pt-20 sm:pt-0  px-5">
       <div className="lg:mx-auto lg:max-w-7xl sm:mt-0 mt-20">
         <Marquee className="mb-12 py-4 bg-white shadow-md rounded-lg">
           {[

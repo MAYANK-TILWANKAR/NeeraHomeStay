@@ -1,372 +1,210 @@
 "use client";
+import { useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay, Pagination, Parallax } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/autoplay";
+import "swiper/css/parallax";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
-import Baglamukhi from "../images/templeimg/Baglamukhi mandir.png";
-import Chintaman from "../images/templeimg/Chintaman Ganesh.jpg";
-import dewas from "../images/templeimg/Dewas tekri.png";
-import gopalMandir from "../images/templeimg/gopal-mandir.png";
-// import harsiddhi from "../images/templeimg/harsiddhi-temple"
-import iscon from "../images/templeimg/Iskon.jpg";
-import kalBhairav from "../images/templeimg/kal-bhairav.png";
-import mahakalLok from "../images/templeimg/Mahakal lok 1.png";
-import mahakal from "../images/templeimg/Mahakal temple.jpg";
-import mangalnath from "../images/templeimg/Mangalnath Temple, Ujjain.jpeg";
-import sandipani from "../images/templeimg/sandipani.jpg";
 import Link from "next/link";
 
 export default function NearbyAtraction() {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  const openImage = (src: string) => {
+    setSelectedImage(src);
+  };
+
+  const closeImage = () => {
+    setSelectedImage(null);
+  };
+
+  const attractionImages = [
+    {
+      src: "/images/nearby/mahakaltemple.jpg",
+      alt: "Mahakaleshwar Temple",
+      title: "Mahakaleshwar Temple",
+      description:
+        "One of the twelve Jyotirlingas, this temple houses a self-manifested Shivalinga and is dedicated to Lord Shiva as the ruler of time.",
+      link: "https://en.wikipedia.org/wiki/Mahakaleshwar_Jyotirlinga",
+    },
+    {
+      src: "/images/nearby/harsiddhi-temple.png.webp",
+      alt: "Harsiddhi Temple",
+      title: "Harsiddhi Temple",
+      description:
+        "Known as a Shakti Peetha, this temple is linked to the story of Sati and showcases centuries of devotion through its Maratha-era renovations.",
+      link: "https://en.wikipedia.org/wiki/Mangalnath_Temple",
+    },
+    {
+      src: "/images/nearby/Chintaman-Ganesh.jpg",
+      alt: "Chintaman Mandir",
+      title: "Chintaman Mandir",
+      description:
+        "This 1,000-year-old temple on the Shipra River's banks is dedicated to Lord Ganesh, believed to remove worries and bestow prosperity.",
+      link: "https://en.wikipedia.org/wiki/Chintaman_Ganesh_Temple,_Ujjain",
+    },
+    {
+      src: "/images/nearby/kal-bhairav.png",
+      alt: "Kal Bhairav Temple",
+      title: "Kal Bhairav Temple",
+      description:
+        "Dedicated to Ujjain's guardian deity, Kal Bhairav, this temple is famous for its unique ritual of offering liquor to the deity.",
+      link: "https://en.wikipedia.org/wiki/Kal_Bhairav_temple",
+    },
+    {
+      src: "/images/nearby/ramghat.jpg",
+      alt: "Ram Ghat",
+      title: "Ram Ghat",
+      description:
+        "A sacred bathing ghat on the Shipra River, Ram Ghat is renowned for its spiritual significance and as a key venue for the Kumbh Mela.",
+      link: "https://en.wikipedia.org/wiki/Ram_Ghat,_Ujjain",
+    },
+    {
+      src: "/images/nearby/iskon.jpg",
+      alt: "ISKCON Temple",
+      title: "ISKCON Temple",
+      description:
+        "This beautiful temple dedicated to Lord Krishna offers spiritual enlightenment and promotes Bhakti Yoga in a serene environment.",
+      link: "https://iskconujjain.com/",
+    },
+    {
+      src: "/images/nearby/gopal-mandir.png",
+      alt: "Gopal Mandir",
+      title: "Gopal Mandir",
+      description:
+        "A historic temple dedicated to Lord Krishna, Gopal Mandir is celebrated for its architectural beauty and religious importance.",
+      link: "https://en.wikipedia.org/wiki/Gopal_Mandir",
+    },
+    {
+      src: "/images/nearby/Mahakallok.png",
+      alt: "Mahakal Lok",
+      title: "Mahakal Lok",
+      description:
+        "A newly developed corridor around Mahakaleshwar Temple, showcasing Ujjain's rich cultural and spiritual heritage through various attractions.",
+      link: "https://ujjain.gov.in/en/tourist-place/mahakal-lok/",
+    },
+    {
+      src: "/images/nearby/Baglamukhi-mandir.png",
+      alt: "Baglamukhi Mata Mandir",
+      title: "Baglamukhi Mata Mandir",
+      description:
+        "This temple, dedicated to Goddess Baglamukhi, is known for its spiritual power and unique rituals that attract devotees from far and wide.",
+      link: "https://en.wikipedia.org/wiki/Baglamukhi",
+    },
+    {
+      src: "/images/nearby/Dewas-tekri.png",
+      alt: "Dewas Tekri",
+      title: "Dewas Tekri",
+      description:
+        "A hilltop offering panoramic views of Ujjain, Dewas Tekri houses temples dedicated to Chamunda Mata and Tulja Bhavani.",
+      link: "https://www.mptourism.com/dewas-tourism.html",
+    },
+    {
+      src: "/images/nearby/Mangalnathtemple.jpeg",
+      alt: "Mangalnath Temple",
+      title: "Mangalnath Temple",
+      description:
+        "Believed to be the birthplace of Mars (Mangal), this temple is an important astrological and spiritual site attracting many visitors.",
+      link: "https://en.wikipedia.org/wiki/Mangalnath",
+    },
+    {
+      src: "/images/nearby/sandipani.jpg",
+      alt: "Sandipani Ashram",
+      title: "Sandipani Ashram",
+      description:
+        "An ancient hermitage where Lord Krishna and Sudama are said to have received their education from the revered Sage Sandipani.",
+      link: "https://en.wikipedia.org/wiki/Sandipani",
+    },
+  ];
+
   return (
-    <section id="nearbyAttraction" className="">
-      <div className="w-screen min-h-screen section7 bg-[#f5f5f5]">
-        <div className="max-w-6xl mx-auto">
-          <header className="flex flex-col  items-center mb-8">
-            <h1 className="text-centersmall sectionHeadings text-5xl font-bold mb-7">
-              <br /> <span className="text-[#0d726c]">Nearby Attractions</span>
-            </h1>
-            <h2 className="text-centersmall text-lg text-gray-500">
-              Explore the rich spiritual and cultural heritage of Ujjain with
-              these nearby attractions:
-            </h2>
-            {/* <Button className="mt-4 bg-yellow-400 text-black ml-auto">View All Projects</Button> */}
-          </header>
-          <div className="grid md:grid-cols-3 gap-8 grid-cols-1">
-            <Card>
-              <CardContent>
-                <Image
-                  src="/gallery/card-1.jpg"
-                  alt="Rivanta Apartment Kitchen"
-                  className="w-full mt-5 rounded-md h-48 object-cover"
-                  width="300"
-                  height="200"
-                  style={{ aspectRatio: "300/200", objectFit: "cover" }}
-                />
-                <div className="flex justify-between items-center mt-4">
-                  <div>
-                    <h3 className="text-lg font-semibold">
-                      Mahakaleshwar Temple
-                    </h3>
-                    <p className="text-sm text-gray-500">
-                      God Shiva is worshipped here as the ruler of time. It is
-                      one of the twelve Jyotirlingas and has a self-manifested
-                      Shivalinga, protecting Ujjain for ages.
-                    </p>
+    <section id="nearbyAttraction" className="bg-[#f5f5f5] sm:py-[90px] py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <header className="text-center pb-10">
+          <h1 className="sm:text-4xl text-3xl font-bold text-black mb-2">
+            <span className="text-[#0d726c]">Nearby Attractions</span>
+          </h1>
+          <p className="sm:text-lg text-base text-gray-600">
+            Explore the rich spiritual and cultural heritage of Ujjain with
+            these nearby attractions:
+          </p>
+        </header>
+
+        <Swiper
+          modules={[Navigation, Autoplay, Pagination, Parallax]}
+          slidesPerView={1}
+          spaceBetween={30}
+          loop={true}
+          autoplay={{
+            delay: 2000,
+            disableOnInteraction: false,
+          }}
+          breakpoints={{
+            640: {
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 30,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 40,
+            },
+          }}
+          className="swiper-container">
+          {attractionImages.map((attraction, index) => (
+            <SwiperSlide key={index}>
+              <Card className="h-full flex flex-col">
+                <CardContent className="flex-grow flex flex-col p-4">
+                  <div className="relative w-full h-48 mb-4">
+                    <Image
+                      src={attraction.src}
+                      alt={attraction.alt}
+                      layout="fill"
+                      objectFit="cover"
+                      className="rounded-md cursor-pointer"
+                      onClick={() => openImage(attraction.src)}
+                    />
                   </div>
-                  <Link href="https://en.wikipedia.org/wiki/Mahakaleshwar_Jyotirlinga">
-                    <Button className="bg-green-600 text-white rounded-full p-2">
-                      <PlusIcon className="text-white" />
-                    </Button>
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent>
-                <Image
-                  src="/gallery/card-3.webp"
-                  alt="Rivanta Apartment Kitchen"
-                  className="w-full mt-5 rounded-md h-48 object-cover"
-                  width="300"
-                  height="200"
-                  style={{ aspectRatio: "300/200", objectFit: "cover" }}
-                />
-                <div className="flex justify-between items-center mt-4">
-                  <div>
-                    <h3 className="text-lg font-semibold">Harsiddhi Temple</h3>
-                    <p className="text-sm text-gray-500">
-                      This temple is known as a Shakti Peetha and is connected
-                      to the story of Sati. It was renovated during the Maratha
-                      period and shows centuries of deep devotion.{" "}
-                    </p>
+                  <h3 className="text-lg font-semibold mb-2">
+                    {attraction.title}
+                  </h3>
+                  <p className="text-sm text-gray-500 flex-grow mb-4">
+                    {attraction.description}
+                  </p>
+                  <div className="flex justify-end">
+                    <Link href={attraction.link}>
+                      <Button className="bg-green-600 text-white rounded-full p-2">
+                        <PlusIcon className="text-white" />
+                      </Button>
+                    </Link>
                   </div>
-                  <Link href="https://en.wikipedia.org/wiki/Mangalnath_Temple">
-                    <Button className="bg-green-600 text-white rounded-full p-2">
-                      <PlusIcon className="text-white" />
-                    </Button>
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent>
-                <Image
-                  src={Chintaman}
-                  alt="4 BHK Bungalow Cleaning"
-                  className="w-full mt-5 rounded-md h-48 object-cover"
-                  width="300"
-                  height="200"
-                  style={{ aspectRatio: "300/200", objectFit: "cover" }}
-                />
-                <div className="flex justify-between items-center mt-4">
-                  <div>
-                    <h3 className="text-lg font-semibold">Chintaman Mandir</h3>
-                    <p className="text-sm text-gray-500">
-                      A temple where god Ganesh removes all worries and blesses
-                      with prosperity. This 1,000-year-old temple on the banks
-                      of the Shipra River has been a place of peace for
-                      generations.
-                    </p>
-                  </div>
-                  <Link href="https://en.wikipedia.org/wiki/Chintaman_Ganesh_Temple,_Ujjain">
-                    <Button className="bg-green-600 text-white rounded-full p-2">
-                      <PlusIcon className="text-white" />
-                    </Button>
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent>
-                <Image
-                  src={kalBhairav}
-                  alt="Bungalow Kitchen Cleaning"
-                  className="w-full mt-5 rounded-md h-48 object-cover"
-                  width="300"
-                  height="200"
-                  style={{ aspectRatio: "300/200", objectFit: "cover" }}
-                />
-                <div className="flex justify-between items-center mt-4">
-                  <div>
-                    <h3 className="text-lg font-semibold">Kaal Bhairav</h3>
-                    <p className="text-sm text-gray-500">
-                      God Bhairav is the protector of Ujjain, where time and
-                      fear are under his control. This ancient temple, known for
-                      its tantric traditions, uniquely offers alcohol to the
-                      deity, showing Bhairav’s mystical powers.{" "}
-                    </p>
-                  </div>
-                  <Link href="https://en.wikipedia.org/wiki/Kal_Bhairav_Temple,_Ujjain">
-                    <Button className="bg-green-600 text-white rounded-full p-2">
-                      <PlusIcon className="text-white" />
-                    </Button>
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-            <Card className="url('https://picsum.photos/1201/1800')">
-              <CardContent>
-                <Image
-                  src={sandipani}
-                  alt="Software Company Office"
-                  className="w-full mt-5 rounded-md h-48 object-cover"
-                  width="300"
-                  height="200"
-                  style={{ aspectRatio: "300/200", objectFit: "cover" }}
-                />
-                <div className="flex justify-between items-center mt-4">
-                  <div>
-                    <h3 className="text-lg font-semibold">Sandipani Ashram </h3>
-                    <p className="text-sm text-gray-500">
-                      This is the holy place where god Krishna learned the arts
-                      under Sage Sandipani. The ashram, connected to ancient
-                      Vedic traditions.
-                    </p>
-                  </div>
-                  <Link href="https://en.wikipedia.org/wiki/Sandipani">
-                    <Button className="bg-green-600 text-white rounded-full p-2">
-                      <PlusIcon className="text-white" />
-                    </Button>
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent>
-                <Image
-                  src={mangalnath}
-                  alt="Rivanta Apartment Kitchen"
-                  className="w-full mt-5 rounded-md h-48 object-cover"
-                  width="300"
-                  height="200"
-                  style={{ aspectRatio: "300/200", objectFit: "cover" }}
-                />
-                <div className="flex justify-between items-center mt-4">
-                  <div>
-                    <h3 className="text-lg font-semibold">Mangalnath Temple</h3>
-                    <p className="text-sm text-gray-500">
-                      The temple where devotees worship the energy of Mars to
-                      align the stars in their favor. This temple is believed to
-                      be the birthplace of Mars as mentioned in ancient
-                      astrological texts.
-                    </p>
-                  </div>
-                  <Link href="https://en.wikipedia.org/wiki/Mangalnath_Temple">
-                    <Button className="bg-green-600 text-white rounded-full p-2">
-                      <PlusIcon className="text-white" />
-                    </Button>
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent>
-                <Image
-                  src="/gallery/card-6.jpg"
-                  alt="4 BHK Bungalow Cleaning"
-                  className="w-full mt-5 rounded-md h-48 object-cover"
-                  width="300"
-                  height="200"
-                  style={{ aspectRatio: "300/200", objectFit: "cover" }}
-                />
-                <div className="flex justify-between items-center mt-4">
-                  <div>
-                    <h3 className="text-lg font-semibold">Ram Ghat</h3>
-                    <p className="text-sm text-gray-500">
-                      A peaceful part of the Shipra River where spiritual hymns
-                      and rituals are performed. One of the oldest ghats.it
-                      holds great importance for the Kumbh Mela, where millions
-                      come to take a holy dip.
-                    </p>
-                  </div>
-                  <Link href="https://en.wikipedia.org/wiki/Shipra_River">
-                    <Button className="bg-green-600 text-white rounded-full p-2">
-                      <PlusIcon className="text-white" />
-                    </Button>
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent>
-                <Image
-                  src={dewas}
-                  alt="Bungalow Kitchen Cleaning"
-                  className="w-full mt-5 rounded-md h-48 object-cover"
-                  width="300"
-                  height="200"
-                  style={{ aspectRatio: "300/200", objectFit: "cover" }}
-                />
-                <div className="flex justify-between items-center mt-4">
-                  <div>
-                    <h3 className="text-lg font-semibold">Dewas Tekri</h3>
-                    <p className="text-sm text-gray-500">
-                      A hilltop temple with a beautiful view of the sacred land.
-                      This ancient pilgrimage site, dedicated to Devi Tulja
-                      Bhavani, has been a symbol of faith for centuries.
-                    </p>
-                  </div>
-                  <Link href="https://en.wikipedia.org/wiki/Dewas_Tekri">
-                    <Button className="bg-green-600 text-white rounded-full p-2">
-                      <PlusIcon className="text-white" />
-                    </Button>
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent>
-                <Image
-                  src={Baglamukhi}
-                  alt="Bungalow Kitchen Cleaning"
-                  className="w-full mt-5 rounded-md h-48 object-cover"
-                  width="300"
-                  height="200"
-                  style={{ aspectRatio: "300/200", objectFit: "cover" }}
-                />
-                <div className="flex justify-between items-center mt-4">
-                  <div>
-                    <h3 className="text-lg font-semibold">Baglamukhi Mandir</h3>
-                    <p className="text-sm text-gray-500">
-                      Goddess Baglamukhi is worshipped here for her power to
-                      silence evil and grant victory. This ancient temple, part
-                      of tantric traditions, has been a place of protection for
-                      ages.
-                    </p>
-                  </div>
-                  <Link href="https://en.wikipedia.org/wiki/Bagalamukhi_Temple,_Nalkheda">
-                    <Button className="bg-green-600 text-white rounded-full p-2">
-                      <PlusIcon className="text-white" />
-                    </Button>
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent>
-                <Image
-                  src={iscon}
-                  alt="Bungalow Kitchen Cleaning"
-                  className="w-full mt-5 rounded-md h-48 object-cover"
-                  width="300"
-                  height="200"
-                  style={{ aspectRatio: "300/200", objectFit: "cover" }}
-                />
-                <div className="flex justify-between items-center mt-4">
-                  <div>
-                    <h3 className="text-lg font-semibold">ISKCON Temple</h3>
-                    <p className="text-sm text-gray-500">
-                      A lively place of devotion where Lord Krishna&apos;s love
-                      is celebrated. Based on the teachings of the Bhagavad
-                      Gita, ISKCON Ujjain welcomes devotees from all over the
-                      world.
-                    </p>
-                  </div>
-                  <Link href="https://en.wikipedia.org/wiki/International_Society_for_Krishna_Consciousness">
-                    <Button className="bg-green-600 text-white rounded-full p-2">
-                      <PlusIcon className="text-white" />
-                    </Button>
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent>
-                <Image
-                  src={gopalMandir}
-                  alt="Bungalow Kitchen Cleaning"
-                  className="w-full mt-5 rounded-md h-48 object-cover"
-                  width="300"
-                  height="200"
-                  style={{ aspectRatio: "300/200", objectFit: "cover" }}
-                />
-                <div className="flex justify-between items-center mt-4">
-                  <div>
-                    <h3 className="text-lg font-semibold">Gopal Mandir</h3>
-                    <p className="text-sm text-gray-500">
-                      A beautiful temple dedicated to god Dwarkadhish, where his
-                      divine presence enchants devotees. Built in the 19th
-                      century by the Scindia dynasty.
-                    </p>
-                  </div>
-                  <Link href="https://en.wikipedia.org/wiki/Gopal_Mandir">
-                    <Button className="bg-green-600 text-white rounded-full p-2">
-                      <PlusIcon className="text-white" />
-                    </Button>
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent>
-                <Image
-                  src={mahakalLok}
-                  alt="Bungalow Kitchen Cleaning"
-                  className="w-full mt-5 rounded-md h-48 object-cover"
-                  width="300"
-                  height="200"
-                  style={{ aspectRatio: "300/200", objectFit: "cover" }}
-                />
-                <div className="flex justify-between items-center mt-4">
-                  <div>
-                    <h3 className="text-lg font-semibold">Mahakal Lok</h3>
-                    <p className="text-sm text-gray-500">
-                      A grand spiritual path that enhances the divine atmosphere
-                      of Mahakaleshwar. This newly created area brings together
-                      ancient history and modern spirituality, offering visitors
-                      a sacred experience.
-                    </p>
-                  </div>
-                  <Link href="https://hi.wikipedia.org/wiki/%E0%A4%B6%E0%A5%8D%E0%A4%B0%E0%A5%80_%E0%A4%AE%E0%A4%B9%E0%A4%BE%E0%A4%95%E0%A4%BE%E0%A4%B2_%E0%A4%AE%E0%A4%B9%E0%A4%BE%E0%A4%B2%E0%A5%8B%E0%A4%95">
-                    <Button className="bg-green-600 text-white rounded-full p-2">
-                      <PlusIcon className="text-white" />
-                    </Button>
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
+                </CardContent>
+              </Card>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
+
+      {/* Full-screen image modal */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+          onClick={closeImage}>
+          <img
+            src={selectedImage}
+            alt="Full-screen"
+            className="max-w-full max-h-full"
+          />
+        </div>
+      )}
     </section>
   );
 }
@@ -390,29 +228,6 @@ const PlusIcon: React.FC<PlusIconProps> = (props) => {
       strokeLinejoin="round">
       <path d="M5 12h14" />
       <path d="M12 5v14" />
-    </svg>
-  );
-};
-
-interface XIconProps {
-  [key: string]: any;
-}
-
-const XIcon: React.FC<XIconProps> = (props) => {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round">
-      <path d="M18 6 6 18" />
-      <path d="m6 6 12 12" />
     </svg>
   );
 };

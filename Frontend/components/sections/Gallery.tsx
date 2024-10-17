@@ -46,7 +46,7 @@ const Gallery = () => {
   ];
 
   return (
-    <section className="bg-white sm:py-[90px] py-20">
+    <section className=" sm:py-[90px] py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center pb-10">
@@ -104,7 +104,7 @@ const Gallery = () => {
       {/* Full-screen image modal */}
       {selectedImage && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+          className="fixed inset-0  bg-opacity-75 flex items-center justify-center z-50"
           onClick={closeImage}>
           <img
             src={selectedImage}

@@ -23,7 +23,7 @@ const Services: React.FC = () => {
   ];
 
   return (
-    <section id="services" className="bg-gray-100 py-16">
+    <section id="services" className=" py-16">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center mb-12">
           <div className="md:w-1/2 mb-8 md:mb-0">

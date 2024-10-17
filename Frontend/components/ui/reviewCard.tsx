@@ -2,7 +2,7 @@ import React from "react";
 import "../../app/styles.css";
 import Image from "next/image";
 import { FaQuoteLeft } from "react-icons/fa";
-import Person1 from "../images/person1.jpg";
+
 interface ReviewCardProps {
   name: string;
   text: string;
@@ -19,7 +19,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ name, text, imageSrc }) => {
       <div className="flex items-center">
         <div className="w-12 h-12 mr-4 relative">
           <Image
-            src={Person1}
+            src={imageSrc}
             alt={`${name}'s profile`}
             layout="fill"
             objectFit="cover"

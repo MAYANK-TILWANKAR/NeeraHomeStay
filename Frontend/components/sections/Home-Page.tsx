@@ -1,12 +1,11 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import HomePageImg from "../images/homepageimage.png";
 
 const HomePage: React.FC = () => {
   return (
     <section
       id="homePage"
-      className="flex flex-col md:flex-row justify-center items-center bg-gray-100 min-h-screen p-4 md:p-8 -my-0 sm:my-20">
+      className="flex flex-col md:flex-row justify-center items-center  min-h-screen p-4 md:p-8 -my-0 sm:my-20">
       <div className="leftSection w-full md:w-1/2 px-4 py-8 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="mb-6 md:mb-10">
@@ -20,7 +19,7 @@ const HomePage: React.FC = () => {
         {/* Image for mobile */}
         <div className="md:hidden mb-6">
           <Image
-            src={HomePageImg}
+            src="/images/homepageimage.png"
             alt="Neera Guest House"
             className="rounded-lg w-full"
             layout="responsive"
@@ -53,7 +52,7 @@ const HomePage: React.FC = () => {
       <div className="w-full md:w-1/2 px-4 py-8 sm:px-6 lg:px-8 hidden md:block">
         <div className="w-full max-w-xl mx-auto">
           <Image
-            src={HomePageImg}
+            src="/images/homepageimage.png"
             alt="Neera Guest House"
             className="rounded-lg w-full"
             width={800}
