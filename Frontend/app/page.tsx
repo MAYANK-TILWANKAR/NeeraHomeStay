@@ -48,7 +48,7 @@ const Home: React.FC = () => {
         <ReviewSection />
         <ContactUs />
 
-        <Analytics />
+        {/* <Analytics /> */}
         <Footer />
       </div>
     </div>
