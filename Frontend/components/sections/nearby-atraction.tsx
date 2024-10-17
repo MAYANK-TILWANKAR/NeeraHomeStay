@@ -123,7 +123,9 @@ export default function NearbyAtraction() {
   ];
 
   return (
-    <section id="nearbyAttraction" className="bg-[#f5f5f5] sm:py-[90px] py-20">
+    <section
+      id="nearbyAttraction"
+      className="bg-[#f5f5f5] sm:py-[90px] py-0 -mt-0 sm:-mt-36">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <header className="text-center pb-10">
           <h1 className="sm:text-4xl text-3xl font-bold text-black mb-2">

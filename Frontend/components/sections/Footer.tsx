@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <>
-      <div className="fixed z-50 left-3 py-4 sm:py-60 bottom-6 flex flex-col space-y-4">
+      <div className="fixed z-50 left-3 py-56 sm:py-60 bottom-6 flex flex-col space-y-4">
         <a
           className="flex justify-center items-center"
           target="_blank"

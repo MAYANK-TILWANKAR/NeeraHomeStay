@@ -76,7 +76,7 @@ const ReviewSection: React.FC = () => {
   ];
 
   return (
-    <section id="review" className=" py-12 sm:py-16 md:py-20 lg:py-24">
+    <section id="review" className=" py-32 sm:py-16 md:py-20 lg:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 sm:mb-12">
           <p className="text-lg sm:text-xl font-semibold text-gray-600 mb-2">
