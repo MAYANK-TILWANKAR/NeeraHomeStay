@@ -31,7 +31,7 @@ export default async function handler(
 
     const mailOptions = {
       from: process.env.EMAIL_USERNAME, // Use your verified sender email
-      to: "mayanktilwankar2355@gmail.com", // Recipient's email
+      to: "adisharma151ays@gmail.com", // Recipient's email
       subject: `New Enquiry from ${data.name}!`, // Email subject
       text: `You have received a new enquiry.\n\nName: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone}\nNumber of Guests: ${data.numberOfGuests}\nDate From: ${data.dateFrom}\nDate To: ${data.dateTo}\nAdditional Requirements: ${data.additionalRequirements || 'None'}`,
     };
