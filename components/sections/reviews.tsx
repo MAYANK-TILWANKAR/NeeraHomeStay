@@ -71,7 +71,7 @@ const ReviewSection: React.FC = () => {
     {
       name: "Vikram Singh",
       text: "Serene lakeside location. The ambiance provided the perfect retreat we sought.",
-      imageSrc: "/images/person3.jpg",
+      imageSrc: "/images/person2.jpg",
     },
   ];
 
