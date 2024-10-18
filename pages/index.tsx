@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect } from "react";
-import "./styles.css";
 import ReviewSection from "../components/sections/reviews";
 import ContactUs from "../components/sections/contactUs";
 import NearbyAtraction from "../components/sections/nearby-atraction";
