@@ -1,18 +1,25 @@
-// pages/api/submit.ts
-import { NextResponse } from 'next/server';
-import connectToDatabase from '../../lib/mongodb';
-import User from '../../models/User';
+import { NextApiRequest, NextApiResponse } from "next";
+import connectToDatabase from "../../lib/mongodb";
+import User from "../../models/User";
 
-export async function POST(request: Request) {
-  try {
-    const formData = await request.json();
-    await connectToDatabase();
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  if (req.method === "POST") {
+    try {
+      const formData = req.body;
+      await connectToDatabase();
 
-    const newUser = new User(formData);
-    await newUser.save();
+      const newUser = new User(formData);
+      await newUser.save();
 
-    return NextResponse.json({ message: 'User created successfully' }, { status: 201 });
-  } catch (error) {
-    return NextResponse.json({ message: 'Error creating user', error }, { status: 500 });
+      res.status(201).json({ message: "User created successfully" });
+    } catch (error) {
+      res.status(500).json({ message: "Error creating user", error });
+    }
+  } else {
+    res.setHeader("Allow", ["POST"]);
+    res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
