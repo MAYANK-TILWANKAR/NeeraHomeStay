@@ -1,25 +1,47 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import connectToDatabase from "../../lib/mongodb";
 import User from "../../models/User";
+import nodemailer from "nodemailer";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method === "POST") {
-    try {
-      const formData = req.body;
-      await connectToDatabase();
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method Not Allowed" });
+  }
 
-      const newUser = new User(formData);
-      await newUser.save();
+  try {
+    await connectToDatabase();
 
-      res.status(201).json({ message: "User created successfully" });
-    } catch (error) {
-      res.status(500).json({ message: "Error creating user", error });
-    }
-  } else {
-    res.setHeader("Allow", ["POST"]);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
+    const data = req.body; // Get form data from request
+    const newUser = new User(data);
+    await newUser.save(); // Save to MongoDB
+
+    // Set up Nodemailer to send email
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: process.env.EMAIL_USERNAME,
+        pass: process.env.EMAIL_PASSWORD,
+      },
+    });
+
+    const mailOptions = {
+      from: process.env.EMAIL_USERNAME, // Use your verified sender email
+      to: "mayanktilwankar2355@gmail.com", // Recipient's email
+      subject: `New Enquiry from ${data.name}!`, // Email subject
+      text: `You have received a new enquiry.\n\nName: ${data.name}\nEmail: ${data.email}\nMobile: ${data.mobile}\nMessage: ${data.message}`,
+    };
+
+    await transporter.sendMail(mailOptions); // Send the email
+
+    // Respond with success
+    res.status(201).json(newUser);
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Server error", details: (error as Error).message });
   }
 }
