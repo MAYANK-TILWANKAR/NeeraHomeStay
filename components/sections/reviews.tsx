@@ -66,12 +66,12 @@ const ReviewSection: React.FC = () => {
     {
       name: "Sneha Reddy",
       text: "The staff was incredibly helpful and the rooms were spacious and comfortable.",
-      imageSrc: "/images/person4.jpg",
+      imageSrc: "/images/person1.jpg",
     },
     {
       name: "Vikram Singh",
       text: "Serene lakeside location. The ambiance provided the perfect retreat we sought.",
-      imageSrc: "/images/person5.jpg",
+      imageSrc: "/images/person3.jpg",
     },
   ];
 
