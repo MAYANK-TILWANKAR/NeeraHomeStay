@@ -24,7 +24,9 @@ export default function ContactUs() {
     additionalRequirements: "",
   });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -42,16 +44,16 @@ export default function ContactUs() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await fetch('/api/submitForm', {
-        method: 'POST',
+      const response = await fetch("/api/submitForm", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
 
       if (response.ok) {
-        alert('Form submitted successfully!');
+        alert("Form submitted successfully!");
         // Reset form
         setFormData({
           name: "",
@@ -63,11 +65,11 @@ export default function ContactUs() {
           additionalRequirements: "",
         });
       } else {
-        alert('Error submitting form. Please try again.');
+        alert("Error submitting form. Please try again.");
       }
     } catch (error) {
-      console.error('Error:', error);
-      alert('An error occurred. Please try again.');
+      console.error("Error:", error);
+      alert("An error occurred. Please try again.");
     }
   };
 
@@ -82,7 +84,7 @@ export default function ContactUs() {
           </h3>
           <h2 className="text-md mt-5 mb-5">
             For any inquiries, bookings or information, reach out to us via
-            phone, email or our online form. We're here to help you plan a
+            phone, email or our online form. We are here to help you plan a
             spiritually enriching stay at Neera.{" "}
           </h2>
           <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
@@ -132,7 +134,9 @@ export default function ContactUs() {
                 <label htmlFor="service" className="block text-sm font-medium">
                   Number of Guests *
                 </label>
-                <Select onValueChange={handleSelectChange} value={formData.numberOfGuests}>
+                <Select
+                  onValueChange={handleSelectChange}
+                  value={formData.numberOfGuests}>
                   <SelectTrigger id="service" aria-label="Service">
                     <SelectValue placeholder="Select Number of Guests" />
                   </SelectTrigger>
