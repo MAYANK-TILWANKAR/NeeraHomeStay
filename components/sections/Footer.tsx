@@ -120,7 +120,7 @@ const Footer = () => {
       <div className=" border-t-2 border-white bg-gray-800 text-white pt-2 pb-5 mt-md-5 d-flex flex-column flex-md-row justify-content-between">
         <div className="text-center">
           <p className="mb-0">
-            Neeraguesthouse.com | Website Designed & Developed By Rudraksh
+            neeratheguesthouse.com | Website Designed & Developed By Rudraksh
             Kumrawat in collaboration with NoxAlgo
           </p>
         </div>

@@ -23,6 +23,8 @@ export default function ContactUs() {
     dateTo: "",
     additionalRequirements: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -43,6 +45,7 @@ export default function ContactUs() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
     try {
       const response = await fetch("/api/submitForm", {
         method: "POST",
@@ -53,7 +56,7 @@ export default function ContactUs() {
       });
 
       if (response.ok) {
-        alert("Form submitted successfully!");
+        console.log("Form submitted successfully!");
         // Reset form
         setFormData({
           name: "",
@@ -64,12 +67,17 @@ export default function ContactUs() {
           dateTo: "",
           additionalRequirements: "",
         });
+        // Show popup
+        setShowPopup(true);
+        setTimeout(() => setShowPopup(false), 2000);
       } else {
         alert("Error submitting form. Please try again.");
       }
     } catch (error) {
       console.error("Error:", error);
       alert("An error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -77,6 +85,13 @@ export default function ContactUs() {
     <section
       id="contactUs"
       className="section8 flex flex-col items-center justify-center h-min-screen p-4 -mt-40 sm:-mt-0 ">
+      {showPopup && (
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-4 rounded-md">
+            <p className="text-lg font-bold">Service is booked</p>
+          </div>
+        </div>
+      )}
       <div className="flex flex-col mt-20 justify-center gap-12 w-full max-w-full p-9 space-y-8 md:flex-row md:space-y-0 md:space-x-8 section8">
         <div className="flex-1 max-w-xl">
           <h3 className="mt-2 text-4xl font-bold">
@@ -192,8 +207,22 @@ export default function ContactUs() {
                 onChange={handleInputChange}
               />
             </div>
-            <Button type="submit" className="w-full mt-4 bg-yellow-400">
-              Book a Service
+            <Button
+              type="submit"
+              className="w-full mt-4 bg-yellow-400 relative overflow-hidden group"
+              disabled={isSubmitting}>
+              <span
+                className={`${
+                  isSubmitting ? "opacity-0" : "opacity-100"
+                } transition-opacity duration-200`}>
+                Book a Service
+              </span>
+              {isSubmitting && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-6 h-6 border-t-2 border-b-2 border-white rounded-full animate-spin"></div>
+                </div>
+              )}
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
             </Button>
           </form>
         </div>
