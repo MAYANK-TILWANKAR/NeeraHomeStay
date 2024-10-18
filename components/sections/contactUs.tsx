@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Input } from "../ui/input";
 import {
   Select,
@@ -14,6 +14,63 @@ import Link from "next/link";
 
 export default function ContactUs() {
   const phoneNumber = "+91 92443 82639";
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    numberOfGuests: "",
+    dateFrom: "",
+    dateTo: "",
+    additionalRequirements: "",
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSelectChange = (value: string) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      numberOfGuests: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('/api/submitForm', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert('Form submitted successfully!');
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          numberOfGuests: "",
+          dateFrom: "",
+          dateTo: "",
+          additionalRequirements: "",
+        });
+      } else {
+        alert('Error submitting form. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred. Please try again.');
+    }
+  };
+
   return (
     <section
       id="contactUs"
@@ -25,16 +82,23 @@ export default function ContactUs() {
           </h3>
           <h2 className="text-md mt-5 mb-5">
             For any inquiries, bookings or information, reach out to us via
-            phone, email or our online form. We’re here to help you plan a
+            phone, email or our online form. We're here to help you plan a
             spiritually enriching stay at Neera.{" "}
           </h2>
-          <form className="mt-6 space-y-4">
+          <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium">
                   Your Name *
                 </label>
-                <Input id="name" placeholder="Ex. John Doe" />
+                <Input
+                  id="name"
+                  name="name"
+                  placeholder="Ex. John Doe"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  required
+                />
               </div>
               <div>
                 <label htmlFor="email" className="block text-sm font-medium">
@@ -42,31 +106,43 @@ export default function ContactUs() {
                 </label>
                 <Input
                   id="email"
+                  name="email"
                   placeholder="example@gmail.com"
                   type="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
                 />
               </div>
               <div>
                 <label htmlFor="phone" className="block text-sm font-medium">
                   Phone *
                 </label>
-                <Input id="phone" placeholder="Enter Phone Number" type="tel" />
+                <Input
+                  id="phone"
+                  name="phone"
+                  placeholder="Enter Phone Number"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  required
+                />
               </div>
               <div>
                 <label htmlFor="service" className="block text-sm font-medium">
                   Number of Guests *
                 </label>
-                <Select>
+                <Select onValueChange={handleSelectChange} value={formData.numberOfGuests}>
                   <SelectTrigger id="service" aria-label="Service">
-                    <SelectValue placeholder="Select Services" />
+                    <SelectValue placeholder="Select Number of Guests" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="service1">1</SelectItem>
-                    <SelectItem value="service2">2</SelectItem>
-                    <SelectItem value="service3">3</SelectItem>
-                    <SelectItem value="service1">4</SelectItem>
-                    <SelectItem value="service2">5</SelectItem>
-                    <SelectItem value="service3">6</SelectItem>
+                    <SelectItem value="1">1</SelectItem>
+                    <SelectItem value="2">2</SelectItem>
+                    <SelectItem value="3">3</SelectItem>
+                    <SelectItem value="4">4</SelectItem>
+                    <SelectItem value="5">5</SelectItem>
+                    <SelectItem value="6">6</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -76,13 +152,27 @@ export default function ContactUs() {
                   className="block text-sm font-medium">
                   From *
                 </label>
-                <Input id="date-from" type="date" />
+                <Input
+                  id="date-from"
+                  name="dateFrom"
+                  type="date"
+                  value={formData.dateFrom}
+                  onChange={handleInputChange}
+                  required
+                />
               </div>
               <div>
                 <label htmlFor="date-to" className="block text-sm font-medium">
                   To *
                 </label>
-                <Input id="date-to" type="date" />
+                <Input
+                  id="date-to"
+                  name="dateTo"
+                  type="date"
+                  value={formData.dateTo}
+                  onChange={handleInputChange}
+                  required
+                />
               </div>
             </div>
             <div>
@@ -91,11 +181,14 @@ export default function ContactUs() {
               </label>
               <Textarea
                 id="message"
+                name="additionalRequirements"
                 placeholder="Enter here..."
                 className="min-h-[100px]"
+                value={formData.additionalRequirements}
+                onChange={handleInputChange}
               />
             </div>
-            <Button className="w-full mt-4 bg-yellow-400">
+            <Button type="submit" className="w-full mt-4 bg-yellow-400">
               Book a Service
             </Button>
           </form>
@@ -104,7 +197,7 @@ export default function ContactUs() {
           <div className="flex flex-col gap-1">
             <h4 className="text-lg font-bold">Address</h4>
             <p>1-MIG,Muni Nagar,Sanwer Road,</p>
-            <p>Ujjain, Madhya Pradesh 456010</p>
+            <p>Ujjain, Madhya Pradesh 456010</p>
           </div>
           <div className="flex flex-col gap-1">
             <h4 className="text-lg font-bold">Contact</h4>
