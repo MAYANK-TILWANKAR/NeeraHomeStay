@@ -36,8 +36,8 @@ const Home: React.FC = () => {
   return (
     <div className="allOfTheAbove">
       <Navbar />
-      <div className="overflow-y-hidden overflow-x-hidden bg-[#f5f5f5]">
-        <HomePage />
+      <div className="overflow-y-hidden overflow-x-hidden bg-white">
+        <HomePage />v
         <AboutUs />
         <div id="gallery">
           <Gallery />
@@ -46,7 +46,6 @@ const Home: React.FC = () => {
         <NearbyAtraction />
         <ReviewSection />
         <ContactUs />
-
         {/* <Analytics /> */}
         <Footer />
       </div>
