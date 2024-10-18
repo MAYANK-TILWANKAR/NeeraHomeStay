@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import ReviewSection from "../components/sections/reviews";
 import ContactUs from "../components/sections/contactUs";
 import NearbyAtraction from "../components/sections/nearby-atraction";
-import Navbar from "../components/ui/navbar";
+import Navbar from "../components/sections/Navbar";
 import HomePage from "../components/sections/Home-Page";
 import AboutUs from "../components/sections/AboutUs";
 import Gallery from "../components/sections/Gallery";
